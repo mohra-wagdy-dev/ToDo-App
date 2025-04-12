@@ -2,8 +2,8 @@
 import ref from "vue"
 export default{
    setup(){
-   const todos= ref[],
-   const newTodo= ref{},
+   const todos= ref([])
+   const newTodo= ref({})
  function create(){
   todos.value.push({
     id:Date.now(),
