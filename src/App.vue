@@ -3,7 +3,7 @@ import {ref} from "vue"
 export default{
    setup(){
    const todos= ref([])
-   const newTodo= ref({})
+   const newTodo= ref("")
  function create(){
   todos.value.push({
     id:Date.now(),
@@ -31,8 +31,7 @@ export default{
       </form>
     </div>
     <ul class="todolist">
-
-      <li v-for="item in todos" :key="item.id">
+      <li v-for="item in todos" :key="item.id" class="todo-item">
        <h3>{{ item.content }}</h3>
       </li>
     </ul>
@@ -85,7 +84,6 @@ form button {
   background: rgb(105, 4, 97);
   cursor: pointer;
   border-radius: 3px;
-  pointer-events: none;
   transition: all 0.3s ease;
 }
 .wrapper .todolist {
@@ -93,7 +91,7 @@ form button {
   max-height: 250px;
   overflow: auto;
 }
-.li {
+.todo-item {
   position: relative;
   list-style: none;
   margin-bottom: 8px;
