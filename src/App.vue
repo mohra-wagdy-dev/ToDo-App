@@ -12,10 +12,21 @@ export default{
   })
   newTodo.value=''
  }
+
+function remove(item){
+  todos.value.splice(todos.value.indexOf(item),1)
+}
+function completed(item){
+item.completed= !item.completed
+}
+function markAll(){
+  todos.value.forEach((todo) => todo.completed = true)
+}
    return{
     todos,
     newTodo,
-    create
+    create,
+    remove
    }
    }
 }
@@ -32,11 +43,14 @@ export default{
     </div>
     <ul class="todolist">
       <li v-for="item in todos" :key="item.id" class="todo-item">
-       <h3>{{ item.content }}</h3>
+        <h3 :class="{ done: item.completed }" @click="completed">
+          {{ item.content }}
+        </h3>
+        <button @click="remove(item)">delete</button>
       </li>
     </ul>
     <div>
-      <button class="footer">Select All</button>
+      <button @click="markAll" class="footer">Select All</button>
     </div>
   </div>
 </template>
